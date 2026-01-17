@@ -54,7 +54,9 @@ export function renderLandingPage(tracking) {
     { code: "no_longer_interested", label: "Changed my mind / no longer interested", btn: "Changed my mind / no longer interested" },
   ];
 
-  const oneClickForms = oneClickReasons.map(r => `
+  const oneClickForms = oneClickReasons
+    .map(
+      (r) => `
     <form method="POST" action="/r" class="answer-form">
       <input type="hidden" name="reason_code" value="${esc(r.code)}" />
       <input type="hidden" name="reason_label" value="${esc(r.label)}" />
@@ -66,7 +68,9 @@ export function renderLandingPage(tracking) {
 
       <button type="submit" class="answer-btn">${esc(r.btn)}</button>
     </form>
-  `).join("\n");
+  `
+    )
+    .join("\n");
 
   const somethingElseBlock = `
     <details class="other-details">
@@ -104,7 +108,7 @@ export function renderLandingPage(tracking) {
   <meta name="referrer" content="no-referrer" />
   <title>Quick check-in</title>
   <style>
-    :root { --btn:#4f80ff; --bg:#f2f3f5; --card:#ffffff; --text:#111827; --muted:#6b7280; --purple:#7c3aed; --border:#e5e7eb; }
+    :root { --btn:#4f80ff; --bg:#f2f3f5; --card:#ffffff; --text:#111827; --muted:#6b7280; --border:#e5e7eb; }
     * { box-sizing: border-box; }
     body {
       margin: 0; padding: 48px 16px;
@@ -119,16 +123,20 @@ export function renderLandingPage(tracking) {
       padding: 38px 26px;
       text-align: center;
     }
-    .icon {
-      width: 72px; height: 72px;
+
+    /* A.Team logo */
+    .logo {
       margin: 0 auto 14px;
-      border-radius: 18px;
-      display: grid; place-items: center;
-      background: var(--purple);
-      color: #fff;
-      font-weight: 900;
-      font-size: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+    .logo svg {
+      width: 82px;
+      height: auto;
+      display: block;
+    }
+
     h1 { margin: 10px 0 6px; font-size: 34px; }
     h2 { margin: 0 0 22px; font-size: 20px; font-weight: 500; color: var(--muted); }
     .answers { display: grid; gap: 14px; margin: 18px auto; max-width: 560px; }
@@ -176,7 +184,40 @@ export function renderLandingPage(tracking) {
 <body>
   <div class="wrap">
     <div class="card">
-      <div class="icon">AI</div>
+
+      <div class="logo" role="img" aria-label="A.Team">
+        <!-- inlined A.Team icon -->
+        <svg width="82" height="72" viewBox="0 0 82 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M48.309 3.9244C46.3855 0.318612 41.8935 -1.05023 38.2758 0.866997C34.6582 2.78423 33.2848 7.26151 35.2084 10.8673L65.7265 68.0754C67.65 71.6812 72.142 73.05 75.7596 71.1328C79.3773 69.2155 80.7506 64.7383 78.8271 61.1325L48.309 3.9244Z" fill="url(#paint0)" />
+          <path d="M48.0337 10.8675C49.9573 7.26175 48.5839 2.78447 44.9663 0.867238C41.3486 -1.04999 36.8566 0.318853 34.9331 3.92464L21.2341 29.6042C24.3172 33.878 28.6937 36.7076 33.5007 38.1105L48.0337 10.8675Z" fill="url(#paint1)" />
+          <path d="M24.5664 54.8585C19.9377 53.0895 15.6051 50.545 11.8326 47.2279L4.41498 61.1327C2.49145 64.7385 3.86479 69.2158 7.48243 71.133C11.1001 73.0502 15.5921 71.6814 17.5156 68.0756L24.5664 54.8585Z" fill="url(#paint2)" />
+          <path d="M48.5463 40.0685C34.1519 44.1029 16.3898 36.5314 14.8137 17.0659C14.4842 12.9954 10.9063 9.96181 6.82233 10.2903C2.73838 10.6188 -0.305148 14.185 0.024431 18.2555C2.56843 49.676 32.693 61.5227 55.6857 53.4518L48.5463 40.0685Z" fill="url(#paint3)" />
+          <path d="M71.4949 43.1859C77.1334 37.0771 80.9958 28.7625 81.811 18.2295C82.1261 14.1577 79.07 10.6023 74.9849 10.2882C70.8998 9.97415 67.3327 13.0203 67.0175 17.092C66.6765 21.4987 65.4791 25.3035 63.6621 28.5028L71.4949 43.1859Z" fill="url(#paint4)" />
+          <defs>
+            <linearGradient id="paint0" gradientUnits="userSpaceOnUse" x1="223.55" y1="-34.007" x2="244.19" y2="97.1408">
+              <stop stop-color="#A54CFF"/>
+              <stop offset="1" stop-color="#7000E3"/>
+            </linearGradient>
+            <linearGradient id="paint1" gradientUnits="userSpaceOnUse" x1="223.55" y1="-34.007" x2="244.19" y2="97.1408">
+              <stop stop-color="#A54CFF"/>
+              <stop offset="1" stop-color="#7000E3"/>
+            </linearGradient>
+            <linearGradient id="paint2" gradientUnits="userSpaceOnUse" x1="223.55" y1="-34.007" x2="244.19" y2="97.1408">
+              <stop stop-color="#A54CFF"/>
+              <stop offset="1" stop-color="#7000E3"/>
+            </linearGradient>
+            <linearGradient id="paint3" gradientUnits="userSpaceOnUse" x1="223.55" y1="-34.007" x2="244.19" y2="97.1408">
+              <stop stop-color="#A54CFF"/>
+              <stop offset="1" stop-color="#7000E3"/>
+            </linearGradient>
+            <linearGradient id="paint4" gradientUnits="userSpaceOnUse" x1="223.55" y1="-34.007" x2="244.19" y2="97.1408">
+              <stop stop-color="#A54CFF"/>
+              <stop offset="1" stop-color="#7000E3"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
       <h1>Quick check-in</h1>
       <h2>What stopped you from scheduling your evaluation?</h2>
 
