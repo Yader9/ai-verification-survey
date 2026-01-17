@@ -1,4 +1,4 @@
-import { normalizeEmail, sendToN8n } from "./_survey";
+import { normalizeEmail, sendToN8n } from "./_survey.js";
 
 export async function onRequestPost(context) {
   const form = await context.request.formData();
