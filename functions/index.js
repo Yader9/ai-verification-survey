@@ -1,4 +1,4 @@
-import { readTrackingParams, renderLandingPage } from "./_survey";
+import { readTrackingParams, renderLandingPage } from "./_survey.js";
 
 export async function onRequestGet(context) {
   const url = new URL(context.request.url);
